@@ -1,11 +1,17 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "suburbswindow.h"
-#include "medicationwindow.h"
-#include "oncallwindow.h"
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QPushButton>
+#include <QHeaderView>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include "medicationwindow.h"
+#include "oncallwindow.h"
+#include "SuburbsWindow.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QVBoxLayout *layout = new QVBoxLayout(central);
     layout->setAlignment(Qt::AlignCenter); // center vertically and horizontally
-    layout->setSpacing(20); // space between buttons
+    layout->setSpacing(20);                // space between buttons
 
     // Create buttons
     QPushButton *suburbsButton = new QPushButton("Suburbs", this);

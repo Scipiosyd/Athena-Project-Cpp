@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QPointer>
+#include <QTableWidget>
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,6 +36,7 @@ private:
     QPointer<SuburbsWindow> suburbsWindow;
     QPointer<MedicationWindow> medicationWindow;
     QPointer<OnCallWindow> onCallWindow;
+
 };
 
 #endif // MAINWINDOW_H

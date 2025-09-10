@@ -1,19 +1,19 @@
 {
 	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
-	"BUILD_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject",
+	"BUILD_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp",
 	"CMAKE_EXECUTABLE" : "C:/Qt/Tools/CMake_64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/CMakeLists.txt",
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake",
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/CMakeLists.txt",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake",
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
@@ -26,7 +26,7 @@
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake",
-		"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
+		"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeRCInformation.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-windres.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
@@ -425,40 +425,46 @@
 		"C:/Qt/6.9.2/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject",
+	"CMAKE_SOURCE_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/deps",
+	"DEP_FILE" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "AthenaProject_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/mainwindow.h",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/medicationwindow.h",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/medicationwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_medicationwindow.cpp",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/oncallwindow.h",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/oncallwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_oncallwindow.cpp",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/suburbswindow.h",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/suburb.h",
+			"MU",
+			"EWIEGA46WW/moc_suburb.cpp",
+			null
+		],
+		[
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/suburbswindow.h",
 			"MU",
 			"EWIEGA46WW/moc_suburbswindow.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
@@ -514,41 +520,41 @@
 		"-c",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/AthenaProject_autogen.dir/ParseCache.txt",
+	"PARALLEL" : 6,
+	"PARSE_CACHE_FILE" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/AthenaProject_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/Qt/6.9.2/mingw_64/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "C:/Qt/6.9.2/mingw_64/bin/uic.exe",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 9,
-	"SETTINGS_FILE" : "C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/AthenaProject_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/CMakeFiles/AthenaProject_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/main.cpp",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/mainwindow.cpp",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/mainwindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/medicationwindow.cpp",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/medicationwindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/oncallwindow.cpp",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/oncallwindow.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/suburbswindow.cpp",
+			"C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/suburbswindow.cpp",
 			"MU",
 			null
 		]

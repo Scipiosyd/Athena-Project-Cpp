@@ -1,5 +1,5 @@
-C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/EWIEGA46WW/moc_medicationwindow.cpp: C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/medicationwindow.h \
-  C:/Users/conri/OneDrive/Desktop/AthenaProject/AthenaProject/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/moc_predefs.h \
+C:/Users/dhmdxc6/Desktop/Qt\ creator\ Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/EWIEGA46WW/moc_medicationwindow.cpp: C:/Users/dhmdxc6/Desktop/Qt\ creator\ Projects/Athena-Project-Cpp/medicationwindow.h \
+  C:/Users/dhmdxc6/Desktop/Qt\ creator\ Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/moc_predefs.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.2/mingw_64/include/QtCore/q20iterator.h \

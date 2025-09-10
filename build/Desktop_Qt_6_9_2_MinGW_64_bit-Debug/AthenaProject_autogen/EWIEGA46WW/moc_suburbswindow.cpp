@@ -38,10 +38,26 @@ template <> constexpr inline auto SuburbsWindow::qt_create_metaobjectdata<qt_met
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "SuburbsWindow"
+        "SuburbsWindow",
+        "addSuburb",
+        "",
+        "editSuburb",
+        "saveToCSV",
+        "tableDoubleClicked",
+        "row"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Slot 'addSuburb'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'editSuburb'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'saveToCSV'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'tableDoubleClicked'
+        QtMocHelpers::SlotData<void(int, int)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 6 }, { QMetaType::Int, 2 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +79,15 @@ Q_CONSTINIT const QMetaObject SuburbsWindow::staticMetaObject = { {
 void SuburbsWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<SuburbsWindow *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->addSuburb(); break;
+        case 1: _t->editSuburb(); break;
+        case 2: _t->saveToCSV(); break;
+        case 3: _t->tableDoubleClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObject *SuburbsWindow::metaObject() const
@@ -85,6 +106,18 @@ void *SuburbsWindow::qt_metacast(const char *_clname)
 int SuburbsWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 4)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 4;
+    }
     return _id;
 }
 QT_WARNING_POP

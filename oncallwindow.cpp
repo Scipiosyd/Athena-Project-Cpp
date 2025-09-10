@@ -1,12 +1,12 @@
 #include "oncallwindow.h"
-#include <QVBoxLayout>
+#include <QFileDialog>
+#include <QLabel>
+#include <QMessageBox>
+#include <QPushButton>
 #include <QTableWidget>
 #include <QTableWidgetItem>
-#include <QLabel>
-#include <QPushButton>
-#include <QFileDialog>
 #include <QTextStream>
-#include <QMessageBox>
+#include <QVBoxLayout>
 
 OnCallWindow::OnCallWindow(QWidget *parent)
     : QWidget(parent)
@@ -40,8 +40,12 @@ OnCallWindow::OnCallWindow(QWidget *parent)
 
     // Save table to CSV
     connect(saveButton, &QPushButton::clicked, [this]() {
-        QString fileName = QFileDialog::getSaveFileName(this, "Save On Call Roster", "", "CSV Files (*.csv)");
-        if (fileName.isEmpty()) return;
+        QString fileName = QFileDialog::getSaveFileName(this,
+                                                        "Save On Call Roster",
+                                                        "",
+                                                        "CSV Files (*.csv)");
+        if (fileName.isEmpty())
+            return;
 
         QFile file(fileName);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {

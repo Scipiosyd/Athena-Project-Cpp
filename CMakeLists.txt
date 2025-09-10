@@ -25,11 +25,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(AthenaProject
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        suburbswindow.h
-        suburbswindow.cpp
+        SuburbsWindow.h
+        SuburbsWindow.cpp
         medicationwindow.h
         medicationwindow.cpp
         oncallwindow.h oncallwindow.cpp
+        suburb.h
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET AthenaProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
