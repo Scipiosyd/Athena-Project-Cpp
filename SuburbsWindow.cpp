@@ -2,140 +2,274 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QHeaderView>
-#include <QDialog>
 #include <QFormLayout>
-#include <QLineEdit>
-#include <QDialogButtonBox>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
 #include <QLabel>
+#include <QDialog>
+#include <QLineEdit>
+#include <QDialogButtonBox>
 
+// ---------------- SuburbDialog ----------------
+class SuburbDialog : public QDialog {
+    Q_OBJECT
+public:
+    SuburbDialog(QWidget *parent = nullptr) : QDialog(parent) {
+        setWindowTitle("Suburb Details");
+        setMinimumWidth(400);
+
+        QVBoxLayout *mainLayout = new QVBoxLayout(this);
+        form = new QFormLayout();
+        mainLayout->addLayout(form);
+
+        suburbField = new QLineEdit(); form->addRow("Suburb:", suburbField);
+        branchCodeField = new QLineEdit(); form->addRow("Branch Code:", branchCodeField);
+        speedDialField = new QLineEdit(); form->addRow("Speed Dial:", speedDialField);
+        regionField = new QLineEdit(); form->addRow("Region:", regionField);
+
+        phone1Field = new QLineEdit(); form->addRow("Phone 1:", phone1Field);
+        phone2Field = new QLineEdit(); form->addRow("Phone 2:", phone2Field);
+        faxField = new QLineEdit(); form->addRow("Fax:", faxField);
+        emailField = new QLineEdit(); form->addRow("Email:", emailField);
+        managerField = new QLineEdit(); form->addRow("Manager:", managerField);
+        managerPhoneField = new QLineEdit(); form->addRow("Manager Phone:", managerPhoneField);
+        supervisorField = new QLineEdit(); form->addRow("Supervisor:", supervisorField);
+        supervisorPhoneField = new QLineEdit(); form->addRow("Supervisor Phone:", supervisorPhoneField);
+        supervisor2Field = new QLineEdit(); form->addRow("Supervisor 2:", supervisor2Field);
+        supervisor2PhoneField = new QLineEdit(); form->addRow("Supervisor 2 Phone:", supervisor2PhoneField);
+        daysHomeVisitField = new QLineEdit(); form->addRow("Days Home Visit:", daysHomeVisitField);
+        hoursOpenField = new QLineEdit(); form->addRow("Hours Open:", hoursOpenField);
+        saturdayHoursOpenField = new QLineEdit(); form->addRow("Saturday Hours Open:", saturdayHoursOpenField);
+        dom1Field = new QLineEdit(); form->addRow("DOM1:", dom1Field);
+        dom2Field = new QLineEdit(); form->addRow("DOM2:", dom2Field);
+        dom3Field = new QLineEdit(); form->addRow("DOM3:", dom3Field);
+        dom4Field = new QLineEdit(); form->addRow("DOM4:", dom4Field);
+
+        QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+        mainLayout->addWidget(buttons);
+
+        connect(buttons, &QDialogButtonBox::accepted, this, &QDialog::accept);
+        connect(buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    }
+
+    void setSuburb(const Suburb &s) {
+        suburbField->setText(s.suburb);
+        branchCodeField->setText(s.branchCode);
+        speedDialField->setText(s.speedDial);
+        regionField->setText(s.region);
+        phone1Field->setText(s.phone1);
+        phone2Field->setText(s.phone2);
+        faxField->setText(s.fax);
+        emailField->setText(s.email);
+        managerField->setText(s.manager);
+        managerPhoneField->setText(s.managerPhone);
+        supervisorField->setText(s.supervisor);
+        supervisorPhoneField->setText(s.supervisorPhone);
+        supervisor2Field->setText(s.supervisor2);
+        supervisor2PhoneField->setText(s.supervisor2Phone);
+        daysHomeVisitField->setText(s.daysHomeVisit);
+        hoursOpenField->setText(s.hoursOpen);
+        saturdayHoursOpenField->setText(s.saturdayHoursOpen);
+        dom1Field->setText(s.dom1);
+        dom2Field->setText(s.dom2);
+        dom3Field->setText(s.dom3);
+        dom4Field->setText(s.dom4);
+    }
+
+    Suburb getSuburb() const {
+        Suburb s;
+        s.suburb = suburbField->text();
+        s.branchCode = branchCodeField->text();
+        s.speedDial = speedDialField->text();
+        s.region = regionField->text();
+        s.phone1 = phone1Field->text();
+        s.phone2 = phone2Field->text();
+        s.fax = faxField->text();
+        s.email = emailField->text();
+        s.manager = managerField->text();
+        s.managerPhone = managerPhoneField->text();
+        s.supervisor = supervisorField->text();
+        s.supervisorPhone = supervisorPhoneField->text();
+        s.supervisor2 = supervisor2Field->text();
+        s.supervisor2Phone = supervisor2PhoneField->text();
+        s.daysHomeVisit = daysHomeVisitField->text();
+        s.hoursOpen = hoursOpenField->text();
+        s.saturdayHoursOpen = saturdayHoursOpenField->text();
+        s.dom1 = dom1Field->text();
+        s.dom2 = dom2Field->text();
+        s.dom3 = dom3Field->text();
+        s.dom4 = dom4Field->text();
+        return s;
+    }
+
+private:
+    QFormLayout *form;
+    QLineEdit *suburbField, *branchCodeField, *speedDialField, *regionField;
+    QLineEdit *phone1Field, *phone2Field, *faxField, *emailField;
+    QLineEdit *managerField, *managerPhoneField;
+    QLineEdit *supervisorField, *supervisorPhoneField;
+    QLineEdit *supervisor2Field, *supervisor2PhoneField;
+    QLineEdit *daysHomeVisitField, *hoursOpenField, *saturdayHoursOpenField;
+    QLineEdit *dom1Field, *dom2Field, *dom3Field, *dom4Field;
+};
+
+// ---------------- SuburbsWindow ----------------
 SuburbsWindow::SuburbsWindow(QWidget *parent)
     : QWidget(parent)
 {
     setWindowTitle("Suburbs");
-    resize(1000, 600);
+    resize(1200, 600);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
 
-    // ---------------- Table Setup ----------------
+    // Table setup
     table = new QTableWidget(this);
-    table->setColumnCount(21);
-    QStringList headers = {"Suburb","Branch Code","Region","Speed Dial","Phone 1","Phone 2","Fax","Email",
-                           "Manager","Manager Phone","Supervisor","Supervisor Phone","Supervisor 2","Supervisor 2 Phone",
-                           "Days Home Visit","Hours Open","Saturday Hours Open","DOM1","DOM2","DOM3","DOM4"};
+    table->setColumnCount(4);
+    QStringList headers = {"Suburb","Branch Code","Speed Dial","Region"};
     table->setHorizontalHeaderLabels(headers);
     table->horizontalHeader()->setStretchLastSection(true);
     table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     table->setAlternatingRowColors(true);
+    table->setEditTriggers(QAbstractItemView::NoEditTriggers); // read-only
+
     table->setStyleSheet(
-        "QTableWidget {"
-        "  gridline-color: #CCCCCC;"
-        "  font-size: 14px;"
-        "}"
-        "QHeaderView::section {"
-        "  background-color: #007ACC;"
-        "  color: white;"
-        "  font-weight: bold;"
-        "  padding: 4px;"
-        "}"
-        "QTableWidget::item:selected {"
-        "  background-color: #80C0FF;"
-        "}"
+        "QTableWidget { gridline-color: #CCCCCC; font-size: 14px; }"
+        "QHeaderView::section { background-color: #007ACC; color: white; font-weight: bold; padding: 4px; }"
+        "QTableWidget::item:selected { background-color: #80C0FF; }"
         );
-    mainLayout->addWidget(table);
 
-    // ---------------- Buttons ----------------
+    mainLayout->addWidget(table, 2);
+
+    // Details panel
+    QWidget *detailsPanel = new QWidget(this);
+    QVBoxLayout *detailsLayout = new QVBoxLayout(detailsPanel);
+
+    QLabel *title = new QLabel("Details", detailsPanel);
+    title->setStyleSheet("font-weight: bold; font-size: 16px; margin-bottom: 10px;");
+    detailsLayout->addWidget(title);
+
+    detailsForm = new QFormLayout();
+    detailsLayout->addLayout(detailsForm);
+
+    // Labels
+    suburbLabel = new QLabel(); branchCodeLabel = new QLabel();
+    regionLabel = new QLabel(); speedDialLabel = new QLabel();
+    phone1Label = new QLabel(); phone2Label = new QLabel();
+    faxLabel = new QLabel(); emailLabel = new QLabel();
+    managerLabel = new QLabel(); managerPhoneLabel = new QLabel();
+    supervisorLabel = new QLabel(); supervisorPhoneLabel = new QLabel();
+    supervisor2Label = new QLabel(); supervisor2PhoneLabel = new QLabel();
+    daysHomeVisitLabel = new QLabel(); hoursOpenLabel = new QLabel();
+    saturdayHoursOpenLabel = new QLabel();
+    dom1Label = new QLabel(); dom2Label = new QLabel();
+    dom3Label = new QLabel(); dom4Label = new QLabel();
+
+    detailsForm->addRow("Suburb:", suburbLabel);
+    detailsForm->addRow("Branch Code:", branchCodeLabel);
+    detailsForm->addRow("Region:", regionLabel);
+    detailsForm->addRow("Speed Dial:", speedDialLabel);
+    detailsForm->addRow("Phone 1:", phone1Label);
+    detailsForm->addRow("Phone 2:", phone2Label);
+    detailsForm->addRow("Fax:", faxLabel);
+    detailsForm->addRow("Email:", emailLabel);
+    detailsForm->addRow("Manager:", managerLabel);
+    detailsForm->addRow("Manager Phone:", managerPhoneLabel);
+    detailsForm->addRow("Supervisor:", supervisorLabel);
+    detailsForm->addRow("Supervisor Phone:", supervisorPhoneLabel);
+    detailsForm->addRow("Supervisor 2:", supervisor2Label);
+    detailsForm->addRow("Supervisor 2 Phone:", supervisor2PhoneLabel);
+    detailsForm->addRow("Days Home Visit:", daysHomeVisitLabel);
+    detailsForm->addRow("Hours Open:", hoursOpenLabel);
+    detailsForm->addRow("Saturday Hours Open:", saturdayHoursOpenLabel);
+    detailsForm->addRow("DOM1:", dom1Label);
+    detailsForm->addRow("DOM2:", dom2Label);
+    detailsForm->addRow("DOM3:", dom3Label);
+    detailsForm->addRow("DOM4:", dom4Label);
+
+    // Buttons
     QHBoxLayout *buttonLayout = new QHBoxLayout();
-    addButton = new QPushButton("Add Suburb", this);
-    editButton = new QPushButton("Edit Selected", this);
-    saveButton = new QPushButton("Save to CSV", this);
-    buttonLayout->addWidget(addButton);
-    buttonLayout->addWidget(editButton);
-    buttonLayout->addWidget(saveButton);
-    mainLayout->addLayout(buttonLayout);
+    addButton = new QPushButton("Add Suburb"); buttonLayout->addWidget(addButton);
+    editButton = new QPushButton("Edit Selected"); buttonLayout->addWidget(editButton);
+    saveButton = new QPushButton("Save to CSV"); buttonLayout->addWidget(saveButton);
 
+    detailsLayout->addSpacing(15);
+    detailsLayout->addLayout(buttonLayout);
+
+    mainLayout->addWidget(detailsPanel, 1);
+
+    // Connections
+    connect(table, &QTableWidget::currentCellChanged, this, &SuburbsWindow::updateDetailsPanel);
     connect(addButton, &QPushButton::clicked, this, &SuburbsWindow::addSuburb);
     connect(editButton, &QPushButton::clicked, this, &SuburbsWindow::editSuburb);
     connect(saveButton, &QPushButton::clicked, this, &SuburbsWindow::saveToCSV);
 }
 
-// ---------------- Slots ----------------
+// ---------------- Details update ----------------
+void SuburbsWindow::updateDetailsPanel(int row, int, int, int) {
+    if (row < 0 || row >= suburbList.size()) return;
+    const Suburb &s = suburbList[row];
+
+    suburbLabel->setText(s.suburb);
+    branchCodeLabel->setText(s.branchCode);
+    regionLabel->setText(s.region);
+    speedDialLabel->setText(s.speedDial);
+    phone1Label->setText(s.phone1);
+    phone2Label->setText(s.phone2);
+    faxLabel->setText(s.fax);
+    emailLabel->setText(s.email);
+    managerLabel->setText(s.manager);
+    managerPhoneLabel->setText(s.managerPhone);
+    supervisorLabel->setText(s.supervisor);
+    supervisorPhoneLabel->setText(s.supervisorPhone);
+    supervisor2Label->setText(s.supervisor2);
+    supervisor2PhoneLabel->setText(s.supervisor2Phone);
+    daysHomeVisitLabel->setText(s.daysHomeVisit);
+    hoursOpenLabel->setText(s.hoursOpen);
+    saturdayHoursOpenLabel->setText(s.saturdayHoursOpen);
+    dom1Label->setText(s.dom1);
+    dom2Label->setText(s.dom2);
+    dom3Label->setText(s.dom3);
+    dom4Label->setText(s.dom4);
+}
+
+// ---------------- Add/Edit ----------------
 void SuburbsWindow::addSuburb() {
-    bool ok;
-    Suburb s = showSuburbDialog(nullptr, &ok);
-    if (ok) {
+    SuburbDialog dlg(this);
+    if (dlg.exec() == QDialog::Accepted) {
+        Suburb s = dlg.getSuburb();
         suburbList.append(s);
         int row = table->rowCount();
         table->insertRow(row);
         table->setItem(row, 0, new QTableWidgetItem(s.suburb));
         table->setItem(row, 1, new QTableWidgetItem(s.branchCode));
-        table->setItem(row, 2, new QTableWidgetItem(s.region));
-        table->setItem(row, 3, new QTableWidgetItem(s.speedDial));
-        table->setItem(row, 4, new QTableWidgetItem(s.phone1));
-        table->setItem(row, 5, new QTableWidgetItem(s.phone2));
-        table->setItem(row, 6, new QTableWidgetItem(s.fax));
-        table->setItem(row, 7, new QTableWidgetItem(s.email));
-        table->setItem(row, 8, new QTableWidgetItem(s.manager));
-        table->setItem(row, 9, new QTableWidgetItem(s.managerPhone));
-        table->setItem(row, 10, new QTableWidgetItem(s.supervisor));
-        table->setItem(row, 11, new QTableWidgetItem(s.supervisorPhone));
-        table->setItem(row, 12, new QTableWidgetItem(s.supervisor2));
-        table->setItem(row, 13, new QTableWidgetItem(s.supervisor2Phone));
-        table->setItem(row, 14, new QTableWidgetItem(s.daysHomeVisit));
-        table->setItem(row, 15, new QTableWidgetItem(s.hoursOpen));
-        table->setItem(row, 16, new QTableWidgetItem(s.saturdayHoursOpen));
-        table->setItem(row, 17, new QTableWidgetItem(s.dom1));
-        table->setItem(row, 18, new QTableWidgetItem(s.dom2));
-        table->setItem(row, 19, new QTableWidgetItem(s.dom3));
-        table->setItem(row, 20, new QTableWidgetItem(s.dom4));
+        table->setItem(row, 2, new QTableWidgetItem(s.speedDial));
+        table->setItem(row, 3, new QTableWidgetItem(s.region));
+        table->selectRow(row);
     }
 }
 
 void SuburbsWindow::editSuburb() {
     int row = table->currentRow();
-    if (row < 0) return;
+    if (row < 0 || row >= suburbList.size()) {
+        QMessageBox::warning(this, "Edit Suburb", "Please select a suburb to edit.");
+        return;
+    }
 
-    bool ok;
-    Suburb edited = showSuburbDialog(&suburbList[row], &ok);
-    if (ok) {
-        suburbList[row] = edited;
-        for (int col = 0; col < 21; ++col) {
-            QString value;
-            switch(col) {
-            case 0: value = edited.suburb; break;
-            case 1: value = edited.branchCode; break;
-            case 2: value = edited.region; break;
-            case 3: value = edited.speedDial; break;
-            case 4: value = edited.phone1; break;
-            case 5: value = edited.phone2; break;
-            case 6: value = edited.fax; break;
-            case 7: value = edited.email; break;
-            case 8: value = edited.manager; break;
-            case 9: value = edited.managerPhone; break;
-            case 10: value = edited.supervisor; break;
-            case 11: value = edited.supervisorPhone; break;
-            case 12: value = edited.supervisor2; break;
-            case 13: value = edited.supervisor2Phone; break;
-            case 14: value = edited.daysHomeVisit; break;
-            case 15: value = edited.hoursOpen; break;
-            case 16: value = edited.saturdayHoursOpen; break;
-            case 17: value = edited.dom1; break;
-            case 18: value = edited.dom2; break;
-            case 19: value = edited.dom3; break;
-            case 20: value = edited.dom4; break;
-            }
-            table->setItem(row, col, new QTableWidgetItem(value));
-        }
+    SuburbDialog dlg(this);
+    dlg.setSuburb(suburbList[row]);
+    if (dlg.exec() == QDialog::Accepted) {
+        Suburb s = dlg.getSuburb();
+        suburbList[row] = s;
+        table->setItem(row, 0, new QTableWidgetItem(s.suburb));
+        table->setItem(row, 1, new QTableWidgetItem(s.branchCode));
+        table->setItem(row, 2, new QTableWidgetItem(s.speedDial));
+        table->setItem(row, 3, new QTableWidgetItem(s.region));
+        updateDetailsPanel(row, 0, 0, 0);
     }
 }
 
-void SuburbsWindow::tableDoubleClicked(int row, int /*column*/) {
-    table->selectRow(row); // make sure row is selected
-    editSuburb();          // open edit dialog
-}
-
+// ---------------- Save CSV ----------------
 void SuburbsWindow::saveToCSV() {
     QString fileName = QFileDialog::getSaveFileName(this, "Save CSV", "", "CSV Files (*.csv)");
     if (fileName.isEmpty()) return;
@@ -151,103 +285,12 @@ void SuburbsWindow::saveToCSV() {
         out << s.suburb << "," << s.branchCode << "," << s.region << "," << s.speedDial << ","
             << s.phone1 << "," << s.phone2 << "," << s.fax << "," << s.email << ","
             << s.manager << "," << s.managerPhone << "," << s.supervisor << "," << s.supervisorPhone << ","
-            << s.supervisor2 << "," << s.supervisor2Phone << "," << s.daysHomeVisit << "," << s.hoursOpen << ","
-            << s.saturdayHoursOpen << "," << s.dom1 << "," << s.dom2 << "," << s.dom3 << "," << s.dom4 << "\n";
+            << s.supervisor2 << "," << s.supervisor2Phone << "," << s.daysHomeVisit << ","
+            << s.hoursOpen << "," << s.saturdayHoursOpen << "," << s.dom1 << "," << s.dom2 << ","
+            << s.dom3 << "," << s.dom4 << "\n";
     }
     file.close();
     QMessageBox::information(this, "Saved", "Suburbs saved successfully!");
 }
 
-// ---------------- Inline Add/Edit Dialog ----------------
-Suburb SuburbsWindow::showSuburbDialog(const Suburb *existing, bool *ok) {
-    QDialog dialog(this);
-    dialog.setWindowTitle(existing ? "Edit Suburb" : "Add Suburb");
-
-    QFormLayout *form = new QFormLayout(&dialog);
-
-    QLineEdit *suburbField = new QLineEdit(&dialog);
-    QLineEdit *branchCodeField = new QLineEdit(&dialog);
-    QLineEdit *regionField = new QLineEdit(&dialog);
-    QLineEdit *speedDialField = new QLineEdit(&dialog);
-    QLineEdit *phone1Field = new QLineEdit(&dialog);
-    QLineEdit *phone2Field = new QLineEdit(&dialog);
-    QLineEdit *faxField = new QLineEdit(&dialog);
-    QLineEdit *emailField = new QLineEdit(&dialog);
-    QLineEdit *managerField = new QLineEdit(&dialog);
-    QLineEdit *managerPhoneField = new QLineEdit(&dialog);
-    QLineEdit *supervisorField = new QLineEdit(&dialog);
-    QLineEdit *supervisorPhoneField = new QLineEdit(&dialog);
-    QLineEdit *supervisor2Field = new QLineEdit(&dialog);
-    QLineEdit *supervisor2PhoneField = new QLineEdit(&dialog);
-    QLineEdit *daysHomeVisitField = new QLineEdit(&dialog);
-    QLineEdit *hoursOpenField = new QLineEdit(&dialog);
-    QLineEdit *saturdayHoursOpenField = new QLineEdit(&dialog);
-    QLineEdit *dom1Field = new QLineEdit(&dialog);
-    QLineEdit *dom2Field = new QLineEdit(&dialog);
-    QLineEdit *dom3Field = new QLineEdit(&dialog);
-    QLineEdit *dom4Field = new QLineEdit(&dialog);
-
-    if (existing) {
-        suburbField->setText(existing->suburb);
-        branchCodeField->setText(existing->branchCode);
-        regionField->setText(existing->region);
-        speedDialField->setText(existing->speedDial);
-        phone1Field->setText(existing->phone1);
-        phone2Field->setText(existing->phone2);
-        faxField->setText(existing->fax);
-        emailField->setText(existing->email);
-        managerField->setText(existing->manager);
-        managerPhoneField->setText(existing->managerPhone);
-        supervisorField->setText(existing->supervisor);
-        supervisorPhoneField->setText(existing->supervisorPhone);
-        supervisor2Field->setText(existing->supervisor2);
-        supervisor2PhoneField->setText(existing->supervisor2Phone);
-        daysHomeVisitField->setText(existing->daysHomeVisit);
-        hoursOpenField->setText(existing->hoursOpen);
-        saturdayHoursOpenField->setText(existing->saturdayHoursOpen);
-        dom1Field->setText(existing->dom1);
-        dom2Field->setText(existing->dom2);
-        dom3Field->setText(existing->dom3);
-        dom4Field->setText(existing->dom4);
-    }
-
-    form->addRow("Suburb:", suburbField);
-    form->addRow("Branch Code:", branchCodeField);
-    form->addRow("Region:", regionField);
-    form->addRow("Speed Dial:", speedDialField);
-    form->addRow("Phone 1:", phone1Field);
-    form->addRow("Phone 2:", phone2Field);
-    form->addRow("Fax:", faxField);
-    form->addRow("Email:", emailField);
-    form->addRow("Manager:", managerField);
-    form->addRow("Manager Phone:", managerPhoneField);
-    form->addRow("Supervisor:", supervisorField);
-    form->addRow("Supervisor Phone:", supervisorPhoneField);
-    form->addRow("Supervisor 2:", supervisor2Field);
-    form->addRow("Supervisor 2 Phone:", supervisor2PhoneField);
-    form->addRow("Days Home Visit:", daysHomeVisitField);
-    form->addRow("Hours Open:", hoursOpenField);
-    form->addRow("Saturday Hours Open:", saturdayHoursOpenField);
-    form->addRow("DOM1:", dom1Field);
-    form->addRow("DOM2:", dom2Field);
-    form->addRow("DOM3:", dom3Field);
-    form->addRow("DOM4:", dom4Field);
-
-    QDialogButtonBox buttons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
-    form->addWidget(&buttons);
-    connect(&buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
-    connect(&buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
-
-    if (dialog.exec() == QDialog::Accepted) {
-        if (ok) *ok = true;
-        return Suburb(suburbField->text(), branchCodeField->text(), regionField->text(), speedDialField->text(),
-                      phone1Field->text(), phone2Field->text(), faxField->text(), emailField->text(),
-                      managerField->text(), managerPhoneField->text(), supervisorField->text(), supervisorPhoneField->text(),
-                      supervisor2Field->text(), supervisor2PhoneField->text(), daysHomeVisitField->text(), hoursOpenField->text(),
-                      saturdayHoursOpenField->text(), dom1Field->text(), dom2Field->text(), dom3Field->text(), dom4Field->text());
-    } else {
-        if (ok) *ok = false;
-        return existing ? *existing : Suburb("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-    }
-}
-
+#include "suburbswindow.moc"

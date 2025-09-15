@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../../suburbswindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -39,25 +40,28 @@ template <> constexpr inline auto SuburbsWindow::qt_create_metaobjectdata<qt_met
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "SuburbsWindow",
-        "addSuburb",
+        "updateDetailsPanel",
         "",
+        "currentRow",
+        "currentColumn",
+        "previousRow",
+        "previousColumn",
+        "addSuburb",
         "editSuburb",
-        "saveToCSV",
-        "tableDoubleClicked",
-        "row"
+        "saveToCSV"
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Slot 'addSuburb'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'editSuburb'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'saveToCSV'
-        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'tableDoubleClicked'
-        QtMocHelpers::SlotData<void(int, int)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 6 }, { QMetaType::Int, 2 },
+        // Slot 'updateDetailsPanel'
+        QtMocHelpers::SlotData<void(int, int, int, int)>(1, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::Int, 4 }, { QMetaType::Int, 5 }, { QMetaType::Int, 6 },
         }}),
+        // Slot 'addSuburb'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'editSuburb'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'saveToCSV'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -81,10 +85,10 @@ void SuburbsWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     auto *_t = static_cast<SuburbsWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->addSuburb(); break;
-        case 1: _t->editSuburb(); break;
-        case 2: _t->saveToCSV(); break;
-        case 3: _t->tableDoubleClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 0: _t->updateDetailsPanel((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4]))); break;
+        case 1: _t->addSuburb(); break;
+        case 2: _t->editSuburb(); break;
+        case 3: _t->saveToCSV(); break;
         default: ;
         }
     }

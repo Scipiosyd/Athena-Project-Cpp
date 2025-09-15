@@ -1,47 +1,47 @@
 # ninja log v6
-64	2795	7791956874301525	AthenaProject_autogen/timestamp	1d47772ec06a2c48
-64	2795	7791956874301525	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-2798	8282	7791956876372852	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
-8811	9532	7791956936494245	AthenaProject.exe	356ae37bad1e1edb
-2818	7688	7791956876562853	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
-2836	8688	7791956876742847	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
-100	130	7791956845212790	clean	577b940aee94fbd7
-3091	15676	7791940361210400	CMakeFiles/AthenaProject.dir/SuburbsWindow.cpp.obj	4d3025ac3b286b4b
-2909	8545	7791956877472845	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
-2961	8566	7791956877992850	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
-2854	8810	7791956876922918	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
-64	2795	7791956874301525	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
-64	2795	7791956874301525	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-24	99	7791956844442776	CMakeFiles/clean.additional	baedbe210acaa455
-2976	7750	7791956878142847	CMakeFiles/AthenaProject.dir/suburbdialog.cpp.obj	2bfdb24428a37289
-39	151	7791964582654068	CMakeFiles/clean.additional	baedbe210acaa455
-152	188	7791964583774069	clean	577b940aee94fbd7
-13	60	7791966262268998	CMakeFiles/clean.additional	baedbe210acaa455
-61	77	7791966262739033	clean	577b940aee94fbd7
-12	57	7791966344354300	CMakeFiles/clean.additional	baedbe210acaa455
-57	73	7791966344777096	clean	577b940aee94fbd7
-20	1250	7791966357445981	AthenaProject_autogen/timestamp	1d47772ec06a2c48
-20	1250	7791966357445981	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-20	1250	7791966357445981	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
-20	1250	7791966357445981	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-1265	3998	7791966358835879	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
-1253	4461	7791966358715887	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
-1322	4612	7791966359404523	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
-1307	4667	7791966359253713	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
-1280	4829	7791966358925828	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
-1293	4942	7791966359113007	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
-16	88	7791967479880446	CMakeFiles/clean.additional	baedbe210acaa455
-89	112	7791967480595957	clean	577b940aee94fbd7
-12	57	7791967547552112	CMakeFiles/clean.additional	baedbe210acaa455
-57	73	7791967548000341	clean	577b940aee94fbd7
-19	1249	7791967560777699	AthenaProject_autogen/timestamp	1d47772ec06a2c48
-19	1249	7791967560777699	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-19	1249	7791967560777699	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
-19	1249	7791967560777699	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
-1262	4052	7791967561972783	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
-1251	4323	7791967561922417	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
-1312	4704	7791967562448608	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
-1298	4737	7791967562386550	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
-1272	4753	7791967562129026	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
-1284	4933	7791967562129026	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
+18	1226	7796102592801948	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+18	1226	7796102592801948	AthenaProject_autogen/timestamp	1d47772ec06a2c48
+1228	4610	7796102593851273	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
 4934	5393	7791967598657739	AthenaProject.exe	ce03f79c6ecba08b
+1244	4979	7796102594021281	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
+1235	4324	7796102593931275	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
+1265	4870	7796102594188557	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
+78	98	7796103464833012	clean	577b940aee94fbd7
+1277	4839	7796102594344794	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
+1254	5066	7796102594032323	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
+18	1226	7796102592801948	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
+18	1226	7796102592801948	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+14	77	7796103464199918	CMakeFiles/clean.additional	baedbe210acaa455
+2976	7750	7791956878142847	CMakeFiles/AthenaProject.dir/suburbdialog.cpp.obj	2bfdb24428a37289
+23	1315	7796103478267718	AthenaProject_autogen/timestamp	1d47772ec06a2c48
+23	1315	7796103478267718	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+23	1315	7796103478267718	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
+23	1315	7796103478267718	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+1326	4702	7796103479519097	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
+1317	5081	7796103479433301	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
+1359	5287	7796103479858814	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
+1371	5358	7796103479968817	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
+1336	5369	7796103479620356	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
+1348	5520	7796103479620356	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
+5520	6050	7796103521462055	AthenaProject.exe	ce03f79c6ecba08b
+15	86	7796106431862293	CMakeFiles/clean.additional	baedbe210acaa455
+86	109	7796106432572291	clean	577b940aee94fbd7
+15	66	7796106468576626	CMakeFiles/clean.additional	baedbe210acaa455
+67	84	7796106469174286	clean	577b940aee94fbd7
+12	59	7796106508097880	CMakeFiles/clean.additional	baedbe210acaa455
+59	76	7796106508622214	clean	577b940aee94fbd7
+48	96	7796107253763381	CMakeFiles/clean.additional	baedbe210acaa455
+96	113	7796107254253398	clean	577b940aee94fbd7
+13	57	7796107317937387	CMakeFiles/clean.additional	baedbe210acaa455
+57	73	7796107318447146	clean	577b940aee94fbd7
+18	1274	7796107331606472	AthenaProject_autogen/timestamp	1d47772ec06a2c48
+18	1274	7796107331606472	AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+18	1274	7796107331606472	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/timestamp	1d47772ec06a2c48
+18	1274	7796107331606472	C:/Users/dhmdxc6/Desktop/Qt creator Projects/Athena-Project-Cpp/build/Desktop_Qt_6_9_2_MinGW_64_bit-Debug/AthenaProject_autogen/mocs_compilation.cpp	1d47772ec06a2c48
+1284	4699	7796107332659659	CMakeFiles/AthenaProject.dir/main.cpp.obj	206bdf7350b98199
+1275	5160	7796107332579644	CMakeFiles/AthenaProject.dir/AthenaProject_autogen/mocs_compilation.cpp.obj	b9a21d8e63d3b80b
+1325	5509	7796107332927101	CMakeFiles/AthenaProject.dir/oncallwindow.cpp.obj	68d92dae6d52f78a
+1293	5539	7796107332749659	CMakeFiles/AthenaProject.dir/mainwindow.cpp.obj	682aadc17134791b
+1313	5552	7796107332927101	CMakeFiles/AthenaProject.dir/medicationwindow.cpp.obj	97711984c1649488
+1303	5720	7796107332770863	CMakeFiles/AthenaProject.dir/suburbswindow.cpp.obj	492e65c4f933da50
+5720	6321	7796107377027091	AthenaProject.exe	ce03f79c6ecba08b
