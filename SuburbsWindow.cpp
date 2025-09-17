@@ -10,6 +10,8 @@
 #include <QDialog>
 #include <QLineEdit>
 #include <QDialogButtonBox>
+#include <QTimer>
+#include <QCloseEvent>
 
 // ---------------- SuburbDialog ----------------
 class SuburbDialog : public QDialog {
@@ -192,17 +194,33 @@ SuburbsWindow::SuburbsWindow(QWidget *parent)
     addButton = new QPushButton("Add Suburb"); buttonLayout->addWidget(addButton);
     editButton = new QPushButton("Edit Selected"); buttonLayout->addWidget(editButton);
     saveButton = new QPushButton("Save to CSV"); buttonLayout->addWidget(saveButton);
+    loadButton = new QPushButton("Load from CSV"); buttonLayout->addWidget(loadButton);
+
 
     detailsLayout->addSpacing(15);
     detailsLayout->addLayout(buttonLayout);
 
     mainLayout->addWidget(detailsPanel, 1);
 
+
+
+
     // Connections
     connect(table, &QTableWidget::currentCellChanged, this, &SuburbsWindow::updateDetailsPanel);
     connect(addButton, &QPushButton::clicked, this, &SuburbsWindow::addSuburb);
     connect(editButton, &QPushButton::clicked, this, &SuburbsWindow::editSuburb);
     connect(saveButton, &QPushButton::clicked, this, &SuburbsWindow::saveToCSV);
+    connect(loadButton, &QPushButton::clicked, this, [this]() {
+    QString fileName = QFileDialog::getOpenFileName(this, "Open CSV", "", "CSV Files (*.csv)");
+    if (!fileName.isEmpty()) {
+        loadFromCSV(fileName);
+    }});
+
+
+
+
+
+
 }
 
 // ---------------- Details update ----------------
@@ -292,5 +310,91 @@ void SuburbsWindow::saveToCSV() {
     file.close();
     QMessageBox::information(this, "Saved", "Suburbs saved successfully!");
 }
+
+void SuburbsWindow::loadFromCSV(const QString &fileNameParam) {
+
+    QString fileName = fileNameParam;
+
+    if(fileName.isEmpty()){
+        fileName = QFileDialog::getOpenFileName(this, "Open CSV", "", "CSV Files (*.csv)");
+        if(fileName.isEmpty()) return;
+    }
+
+    QFile file(fileName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QMessageBox::warning(this, "Error", "Cannot open file for reading");
+        return;
+    }
+
+
+    QTextStream in(&file);
+    suburbList.clear();
+    table->setRowCount(0);
+
+
+    if(!in.atEnd()){
+        in.readLine();
+    }
+
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList fields = line.split(",");
+
+        if (fields.size() < 20) continue; // skip malformed lines
+
+        Suburb s;
+        s.suburb            = fields[0];
+        s.branchCode        = fields[1];
+        s.speedDial         = fields[2];
+        s.region            = fields[3];
+        s.phone1            = fields[4];
+        s.phone2            = fields[5];
+        s.fax               = fields[6];
+        s.email             = fields[7];
+        s.manager           = fields[8];
+        s.managerPhone      = fields[9];
+        s.supervisor        = fields[10];
+        s.supervisorPhone   = fields[11];
+        s.supervisor2       = fields[12];
+        s.supervisor2Phone  = fields[13];
+        s.daysHomeVisit     = fields[14];
+        s.hoursOpen         = fields[15];
+        s.saturdayHoursOpen = fields[16];
+        s.dom1              = fields[17];
+        s.dom2              = fields[18];
+        s.dom3              = fields[19];
+        s.dom4              = fields.size() > 20 ? fields[20] : "";
+
+        suburbList.append(s);
+
+
+
+        if(s.speedDial.isEmpty() || s.speedDial.contains("TBA")){
+            s.speedDial = s.phone1;
+        }
+
+
+        int row = table->rowCount();
+        table->insertRow(row);
+        table->setItem(row, 0, new QTableWidgetItem(s.suburb));
+        table->setItem(row, 1, new QTableWidgetItem(s.branchCode));
+        table->setItem(row, 2, new QTableWidgetItem(s.speedDial));
+        table->setItem(row, 3, new QTableWidgetItem(s.region));
+
+
+    }
+
+
+    file.close();
+}
+
+void SuburbsWindow::closeEvent(QCloseEvent *event)
+{
+    event->ignore(); // Prevent actual closing
+    this->hide();    // Just hide the window
+}
+
+
+
 
 #include "suburbswindow.moc"

@@ -48,6 +48,14 @@ private slots:
     void editSuburb();
     void saveToCSV();
 
+
+public slots:
+    void loadFromCSV(const QString &fileName);
+
+
+protected:
+    void closeEvent(QCloseEvent *event) override; // handle hide-on-close
+
 private:
     // Table
     QTableWidget *table;
@@ -80,9 +88,12 @@ private:
     QPushButton *addButton;
     QPushButton *editButton;
     QPushButton *saveButton;
+    QPushButton *loadButton;
 
     // Suburb list
     QVector<Suburb> suburbList;
+
+
 };
 
 #endif // SUBURBSWINDOW_H

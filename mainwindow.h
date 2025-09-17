@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPointer>
 #include <QTableWidget>
+#include <QLabel>
 
 
 
@@ -29,6 +30,10 @@ private slots:
     void openSuburbs();
     void openMedication();
     void openOnCallRoster();
+    void loadFromCSV(const QString &fileName);
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     Ui::MainWindow *ui;
@@ -37,6 +42,12 @@ private:
     QPointer<MedicationWindow> medicationWindow;
     QPointer<OnCallWindow> onCallWindow;
 
+    //Status Label
+    QLabel *statusLabelpositive;
+    QLabel *statusLabelerror;
+
 };
+
+
 
 #endif // MAINWINDOW_H
