@@ -12,6 +12,13 @@
 #include <QDialogButtonBox>
 #include <QTimer>
 #include <QCloseEvent>
+#include <QProgressDialog>
+#include <QScrollBar>
+#include <QProgressBar>
+#include <QWebEnginePage>
+#include <QWebEngineProfile>
+#include <QWebEngineSettings>
+#include <QWebEngineView>
 
 // ---------------- SuburbDialog ----------------
 class SuburbDialog : public QDialog {
@@ -195,7 +202,15 @@ SuburbsWindow::SuburbsWindow(QWidget *parent)
     editButton = new QPushButton("Edit Selected"); buttonLayout->addWidget(editButton);
     saveButton = new QPushButton("Save to CSV"); buttonLayout->addWidget(saveButton);
     loadButton = new QPushButton("Load from CSV"); buttonLayout->addWidget(loadButton);
+    updateButton = new QPushButton("Update from Web"); // NEW
 
+
+
+    buttonLayout->addWidget(addButton);
+    buttonLayout->addWidget(editButton);
+    buttonLayout->addWidget(saveButton);
+    buttonLayout->addWidget(loadButton);
+    buttonLayout->addWidget(updateButton);
 
     detailsLayout->addSpacing(15);
     detailsLayout->addLayout(buttonLayout);
@@ -215,9 +230,12 @@ SuburbsWindow::SuburbsWindow(QWidget *parent)
     if (!fileName.isEmpty()) {
         loadFromCSV(fileName);
     }});
+    connect(updateButton, &QPushButton::clicked, this, &SuburbsWindow::updateFromWeb);
 
 
-
+    // --- Networking manager ---
+    networkManager = new QNetworkAccessManager(this);
+    connect(networkManager, &QNetworkAccessManager::finished, this, &SuburbsWindow::handleNetworkReply);
 
 
 
@@ -393,6 +411,166 @@ void SuburbsWindow::closeEvent(QCloseEvent *event)
     event->ignore(); // Prevent actual closing
     this->hide();    // Just hide the window
 }
+
+
+void SuburbsWindow::updateFromWeb() {
+    if (suburbList.isEmpty()) {
+        QMessageBox::information(this, "Update", "No suburbs to update.");
+        return;
+    }
+
+    currentUpdateIndex = 0;
+
+    // --- Create the progress dialog ---
+    progressDialog = new QProgressDialog("Updating suburbs...", "Cancel", 0, suburbList.size(), this);
+    progressDialog->setWindowTitle("Update Progress");
+    progressDialog->setMinimumDuration(0);
+    progressDialog->setAutoClose(false);
+
+    QVBoxLayout *layout = new QVBoxLayout(progressDialog);
+    progressBar = new QProgressBar(progressDialog);
+    progressBar->setMinimum(0);
+    progressBar->setMaximum(suburbList.size());
+    layout->addWidget(progressBar);
+
+    progressTextEdit = new QTextEdit(progressDialog);
+    progressTextEdit->setReadOnly(true);
+    progressTextEdit->setFixedHeight(200);
+    layout->addWidget(progressTextEdit);
+
+    progressDialog->setLayout(layout);
+    progressDialog->show();
+
+    // --- WebEngine page for loading HTML ---
+    if (!webPage) {
+        webPage = new QWebEnginePage(this);
+        connect(webPage, &QWebEnginePage::loadFinished, this, &SuburbsWindow::handlePageLoad);
+    }
+
+    sendNextUpdate();
+}
+
+
+
+void SuburbsWindow::sendNextUpdate() {
+    if (currentUpdateIndex >= suburbList.size()) {
+        progressTextEdit->append("✅ All suburbs updated successfully!");
+        progressBar->setValue(suburbList.size());
+        return;
+    }
+
+    Suburb &s = suburbList[currentUpdateIndex];
+    QString branchCode = s.branchCode.trimmed();
+
+    if (branchCode.isEmpty()) {
+        progressTextEdit->append(QString("⚠️ Row %1: branch code empty, skipping").arg(currentUpdateIndex));
+        currentUpdateIndex++;
+        sendNextUpdate();
+        return;
+    }
+
+    QString url = QString("https://dhmcontacts.au.int.sonichealthcare/LocationInformation/SIE/%1(outletSidenav:CollectionCentres)").arg(branchCode);
+    progressTextEdit->append(QString("🌐 Loading URL: %1").arg(url));
+
+    webPage->load(QUrl(url));
+}
+
+
+void SuburbsWindow::handlePageLoad(bool ok) {
+    Suburb &s = suburbList[currentUpdateIndex];
+
+    if (!ok) {
+        progressTextEdit->append(QString("❌ Failed to load row %1: %2").arg(currentUpdateIndex).arg(s.branchCode));
+    } else {
+        // Run JavaScript to get all mat-cards
+        QString js = R"(
+            (function() {
+                let result = [];
+                document.querySelectorAll('mat-card').forEach(card => {
+                    let title = card.querySelector('mat-card-title')?.innerText || '';
+                    let subtitle = card.querySelector('mat-card-subtitle')?.innerText || '';
+                    let phoneLinks = Array.from(card.querySelectorAll('a[href^="avaya://call"]'))
+                        .map(a => a.innerText.trim());
+                    result.push({title, subtitle, phones: phoneLinks});
+                });
+                return result;
+            })();
+        )";
+
+        webPage->runJavaScript(js, [this](const QVariant &v) {
+            QList<QVariant> cards = v.toList();
+            Suburb &s = suburbList[currentUpdateIndex];
+
+            for (const QVariant &c : cards) {
+                QVariantMap card = c.toMap();
+                QString staffName = card["title"].toString();
+                QString subtitle = card["subtitle"].toString();
+                QString phoneAssigned = card["phones"].toList().isEmpty() ? "N/A" : card["phones"].toList().first().toString();
+
+                if (subtitle.contains("Clinical Manager")) {
+                    s.manager = staffName;
+                    s.managerPhone = phoneAssigned;
+                } else if (subtitle.contains("Clinical Supervisor")) {
+                    s.supervisor = staffName;
+                    s.supervisorPhone = phoneAssigned;
+                } else if (subtitle.contains("Relief Clinical Supervisor")) {
+                    s.supervisor2 = staffName;
+                    s.supervisor2Phone = phoneAssigned;
+                }
+
+                progressTextEdit->append(QString("✅ %1: %2 → %3").arg(s.branchCode).arg(staffName).arg(phoneAssigned));
+            }
+
+            // Update table
+            table->setItem(currentUpdateIndex, 0, new QTableWidgetItem(s.suburb));
+            table->setItem(currentUpdateIndex, 1, new QTableWidgetItem(s.branchCode));
+            table->setItem(currentUpdateIndex, 2, new QTableWidgetItem(s.speedDial));
+            table->setItem(currentUpdateIndex, 3, new QTableWidgetItem(s.region));
+
+            // Update progress
+            progressBar->setValue(currentUpdateIndex + 1);
+
+            currentUpdateIndex++;
+            sendNextUpdate();
+        });
+    }
+}
+
+
+
+
+// ---------------- showProgressDialog ----------------
+void SuburbsWindow::showProgressDialog() {
+    if (progressDialog) {
+        progressDialog->deleteLater();
+    }
+
+    progressDialog = new QDialog(this);
+    progressDialog->setWindowTitle("Updating Suburbs");
+    progressDialog->resize(600, 400);
+
+    QVBoxLayout *layout = new QVBoxLayout(progressDialog);
+
+    progressBar = new QProgressBar(progressDialog);
+    progressBar->setMinimum(0);
+    progressBar->setMaximum(suburbList.size());
+    layout->addWidget(progressBar);
+
+    progressTextEdit = new QTextEdit(progressDialog);
+    progressTextEdit->setReadOnly(true);
+    layout->addWidget(progressTextEdit);
+
+    progressDialog->setLayout(layout);
+    progressDialog->show();
+}
+
+
+
+
+
+
+
+
 
 
 

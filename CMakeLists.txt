@@ -9,58 +9,41 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+# Find Qt modules
+find_package(Qt6 REQUIRED COMPONENTS Widgets Network WebEngineWidgets)
 
+# Sources
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    SuburbsWindow.cpp
+    SuburbsWindow.h
+    medicationwindow.cpp
+    medicationwindow.h
+    oncallwindow.cpp
+    oncallwindow.h
+    suburb.h
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    find_package(Qt6 REQUIRED COMPONENTS Widgets)
+# Add executable
+qt_add_executable(AthenaProject
+    MANUAL_FINALIZATION
+    ${PROJECT_SOURCES}
+)
 
-    qt_add_executable(AthenaProject
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-        SuburbsWindow.h
-        SuburbsWindow.cpp
-        medicationwindow.h
-        medicationwindow.cpp
-        oncallwindow.h oncallwindow.cpp
-        suburb.h
+# Link Qt libraries
+target_link_libraries(AthenaProject
+    PRIVATE
+        Qt6::Widgets
+        Qt6::Network
+        Qt6::WebEngineWidgets
+)
 
-
-
-    )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET AthenaProject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(AthenaProject SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(AthenaProject
-            ${PROJECT_SOURCES}
-        )
-    endif()
-endif()
-
-target_link_libraries(AthenaProject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(AthenaProject PRIVATE Qt6::Widgets)
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
+# macOS/iOS bundle settings
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.AthenaProject)
+    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.AthenaProject)
 endif()
 set_target_properties(AthenaProject PROPERTIES
     ${BUNDLE_ID_OPTION}
@@ -77,6 +60,5 @@ install(TARGETS AthenaProject
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(AthenaProject)
-endif()
+# Finalize executable for Qt6
+qt_finalize_executable(AthenaProject)

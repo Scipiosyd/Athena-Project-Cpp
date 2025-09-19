@@ -8,6 +8,16 @@
 #include <QLabel>
 #include <QString>
 #include <QVector>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QProgressDialog>
+#include <QTextEdit>
+#include <QWebEnginePage>
+#include <QProgressDialog>
+#include <QProgressBar>
+
+
 
 // ---------------- Suburb struct ----------------
 struct Suburb {
@@ -47,6 +57,12 @@ private slots:
     void addSuburb();
     void editSuburb();
     void saveToCSV();
+    void updateFromWeb();                    // NEW
+    void handleNetworkReply(QNetworkReply*); // NEW
+    void sendNextUpdate();
+    void showProgressDialog();
+    void handlePageLoad(bool ok);
+
 
 
 public slots:
@@ -89,10 +105,21 @@ private:
     QPushButton *editButton;
     QPushButton *saveButton;
     QPushButton *loadButton;
+    QPushButton *updateButton; // NEW
 
     // Suburb list
     QVector<Suburb> suburbList;
 
+    // Networking
+    QNetworkAccessManager *networkManager; // NEW
+
+    int currentUpdateIndex = 0;    // Tracks which suburb is being updated
+
+    // Progress dialog members
+    QProgressBar *progressBar = nullptr;
+    QTextEdit *progressTextEdit = nullptr;
+    QDialog *progressDialog = nullptr;
+    QWebEnginePage *webPage = nullptr;
 
 };
 
